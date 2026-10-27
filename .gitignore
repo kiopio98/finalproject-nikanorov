@@ -1,0 +1,16 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.coverage
+dist/
+*.egg-info/
+.env
+.env.*
+!.env.example
+logs/
+data/*.json
+data/*.tmp
+data/.lock
+data/.transaction.json
