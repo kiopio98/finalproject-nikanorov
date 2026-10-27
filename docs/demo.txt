@@ -1,0 +1,54 @@
+$ uv run python docs/demo.py
+ДЕМОНСТРАЦИЯ: учебные HTTP-ответы, реальные команды приложения.
+valuta> register --username alice --password demo123
+Пользователь 'alice' зарегистрирован (id=1). Войдите: login --username alice
+valuta> login --username alice --password wrong
+Неверный пароль
+valuta> login --username alice --password demo123
+Вы вошли как 'alice'
+valuta> show-portfolio
+Ваш портфель пуст. Выполните buy, чтобы добавить валюту
+valuta> update-rates
+Обновление курсов...
+Обновлено пар: 6. Время: 2026-10-27T17:48:19.174642Z
+Rates By Exchange Rate API: https://www.exchangerate-api.com
+valuta> show-rates --top 2
++---------+-------+-----------------------------+-----------+
+|   Пара  |  Курс |       Обновлено (UTC)       | Состояние |
++---------+-------+-----------------------------+-----------+
+| BTC_USD | 50000 | 2026-10-27T17:48:19.174642Z |  актуален |
+| ETH_USD |  2500 | 2026-10-27T17:48:19.174642Z |  актуален |
++---------+-------+-----------------------------+-----------+
+Rates By Exchange Rate API: https://www.exchangerate-api.com
+valuta> show-rates --currency RUB
++---------+------+-----------------------------+-----------+
+|   Пара  | Курс |       Обновлено (UTC)       | Состояние |
++---------+------+-----------------------------+-----------+
+| RUB_USD | 0.01 | 2026-10-27T17:48:19.174642Z |  актуален |
++---------+------+-----------------------------+-----------+
+Rates By Exchange Rate API: https://www.exchangerate-api.com
+valuta> buy --currency BTC --amount 0.05
+Покупка выполнена: 0.0500 BTC
+Баланс: 0.0000 → 0.0500
+Курс: 50000.00000000 USD; оценочная стоимость: 2500.00 USD
+valuta> sell --currency BTC --amount 0.01
+Продажа выполнена: 0.0100 BTC
+Баланс: 0.0500 → 0.0400
+Курс: 50000.00000000 USD; оценочная стоимость: 500.00 USD
+valuta> show-portfolio --base EUR
+Портфель пользователя 'alice'
++--------+------------+----------------+
+| Валюта |   Баланс   | Стоимость, EUR |
++--------+------------+----------------+
+|  BTC   | 0.04000000 |   1600.0000    |
++--------+------------+----------------+
+ИТОГО: 1600.0000 EUR
+valuta> get-rate --from USD --to BTC
+Курс USD→BTC: 2e-05 (обновлён: 2026-10-27T17:48:19.174642Z)
+valuta> sell --currency BTC --amount 100
+Недостаточно средств: доступно 0.04 BTC, требуется 100 BTC
+valuta> get-rate --from AAA --to USD
+Неизвестная валюта 'AAA'. Доступные коды: USD, EUR, GBP, RUB, BTC, ETH, SOL
+valuta> buy --currency BTC --amount nan
+Сумма должна быть конечной и положительной
+valuta> exit
